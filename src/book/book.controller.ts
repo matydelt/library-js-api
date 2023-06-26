@@ -10,6 +10,7 @@ import {
 import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { ParseUuuidpipePipe } from 'src/parse-uuuidpipe/parse-uuuidpipe.pipe';
 
 @Controller('book')
 export class BookController {
@@ -26,7 +27,7 @@ export class BookController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUuuidpipePipe) id: string) {
     return this.bookService.findOne(+id);
   }
 

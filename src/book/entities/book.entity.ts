@@ -3,14 +3,18 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Book {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
-  @Column()
+  @Column('varchar')
   title: string;
-  @Column()
+  @Column('varchar')
   prologue: string;
-  @Column()
+  @Column('varchar')
   pdf: string;
+  @Column('date')
+  date: Date;
+  @Column('boolean')
+  free: boolean;
   @ManyToOne(() => Author, (Author) => Author.books)
-  author: Author;
+  author: string;
 }
