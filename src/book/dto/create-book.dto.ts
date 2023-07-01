@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Book } from '../entities/book.entity';
 
 export class CreateBookDto {
   @ApiProperty({ name: 'title', nullable: false })

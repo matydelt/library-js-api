@@ -1,8 +1,7 @@
 import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
-
 @Injectable()
 export class ParseUuuidpipePipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
+  transform(value: string, metadata: ArgumentMetadata) {
     return value;
   }
 }

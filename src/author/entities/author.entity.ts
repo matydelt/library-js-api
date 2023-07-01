@@ -1,10 +1,13 @@
 import { Book } from 'src/book/entities/book.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import countries from 'utils/countries';
 
 @Entity()
 export class Author {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryColumn({ length: 8 })
+  dni: string;
+  @PrimaryColumn()
+  dni_nationality: countries;
   @Column()
   name: string;
   @Column()

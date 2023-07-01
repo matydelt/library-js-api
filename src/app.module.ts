@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 // import { AuthorResolver } from './author/author.resolver';
@@ -7,6 +7,7 @@ import { BookModule } from './book/book.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from './book/entities/book.entity';
 import { Author } from './author/entities/author.entity';
+import { LoggerMiddleware } from './logger/logger.middleware';
 
 const ormModule = TypeOrmModule.forRoot({
   type: 'mysql',
@@ -24,4 +25,8 @@ const ormModule = TypeOrmModule.forRoot({
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}
